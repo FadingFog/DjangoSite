@@ -1,0 +1,31 @@
+* {
+    box-sizing:border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+h1 {
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 10px;
+}
+
+#content,
+#sidebar {
+    display: inline-block;
+    padding: 20px;
+    height: 100%;
+}
+
+#sidebar {
+    float: right;
+    width: 15%;
+    background-color: #d3d3d3;
+}
