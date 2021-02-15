@@ -1,5 +1,9 @@
 {% extends 'blog/base.html' %}
 
+{% block title %}
+    {{ post.title }} - {{ block.super }}
+{% endblock %}
+
 {% block content %}
     <div class="post">
         {% if post.published_date %}
@@ -7,7 +11,9 @@
                 {{ post.published_date }}
             </div>
         {% endif %}
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <h1 class="mt-2">
+            {{ post.title }}
+        </h1>
+        <p>{{ post.text }}</p>
     </div>
 {% endblock %}
