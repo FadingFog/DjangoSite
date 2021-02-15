@@ -16,4 +16,8 @@ def post_detail(request, pk):
 
 class HotelListView(ListView):
     model = Hotel
-    template_name = 'blog/hotels.html'
+    template_name = 'blog/hotel_list.html'
+
+
+def index(request):
+    return render(request, 'blog/index.html')
