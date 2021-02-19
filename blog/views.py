@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from django.views.generic import ListView
+from django.views.generic import View, ListView
 from .models import Post, Tag, Hotel
+from .utils import ObjectDetailMixin
 
 
 def index(request):
@@ -9,19 +10,19 @@ def index(request):
     return render(request, 'blog/index.html', {'posts': posts})
 
 
-def post_detail(request, slug):
-    post = get_object_or_404(Post, slug=slug)
-    return render(request, 'blog/post_detail.html', {'post': post})
+class PostDetail(ObjectDetailMixin, View):
+    model = Post
+    template = 'blog/post_detail.html'
+
+
+class TagDetail(ObjectDetailMixin, View):
+    model = Tag
+    template = 'blog/tag_detail.html'
 
 
 def tags_list(request):
     tags = Tag.objects.all()
     return render(request, 'blog/tag_list.html', {'tags': tags})
-
-
-def tag_detail(request, slug):
-    tag = get_object_or_404(Tag, slug=slug)
-    return render(request, 'blog/tag_detail.html', {'tag': tag})
 
 
 class HotelListView(ListView):
