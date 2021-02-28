@@ -25,7 +25,6 @@ class PostCreate(ObjectCreateMixin, View):
 class PostUpdate(ObjectUpdateMixin, View):
     model = Post
     model_form = PostForm
-    template = 'blog/post_update.html'
 
 
 class PostDelete(ObjectDeleteMixin, View):
@@ -46,7 +45,6 @@ class TagCreate(ObjectCreateMixin, View):
 class TagUpdate(ObjectUpdateMixin, View):
     model = Tag
     model_form = TagForm
-    template = 'blog/tag_update.html'
 
 
 class TagDelete(ObjectDeleteMixin, View):

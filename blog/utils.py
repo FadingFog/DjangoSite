@@ -31,12 +31,12 @@ class ObjectCreateMixin:
 class ObjectUpdateMixin:
     model = None
     model_form = None
-    template = None
+    template = 'blog/obj_update.html'
 
     def get(self, request, slug):
         obj = self.model.objects.get(slug__exact=slug)
         bound_form = self.model_form(instance=obj)
-        return render(request, self.template, {'form': bound_form, self.model.__name__.lower(): obj})
+        return render(request, self.template, {'form': bound_form, 'obj': obj, 'name': self.model.__name__.lower()})
 
     def post(self, request, slug):
         obj = self.model.objects.get(slug__exact=slug)
@@ -45,7 +45,7 @@ class ObjectUpdateMixin:
         if bound_form.is_valid():
             new_obj = bound_form.save()
             return redirect(new_obj)
-        return render(request, self.template, {'form': bound_form, self.model.__name__.lower(): obj})
+        return render(request, self.template, {'form': bound_form,  self.model.__name__.lower(): obj})
 
 
 class ObjectDeleteMixin:

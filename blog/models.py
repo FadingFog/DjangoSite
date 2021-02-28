@@ -28,7 +28,7 @@ class Post(models.Model):
         return reverse('post_detail', kwargs={'slug': self.slug})
 
     def get_update_url(self):
-        return reverse('post_update', kwargs={'slug': self.slug})
+        return reverse('obj_update', kwargs={'slug': self.slug})
 
     def get_delete_url(self):
         return reverse('obj_delete', kwargs={'slug': self.slug})
@@ -50,7 +50,7 @@ class Tag(models.Model):
         return reverse('tag_detail', kwargs={'slug': self.slug})
 
     def get_update_url(self):
-        return reverse('tag_update', kwargs={'slug': self.slug})
+        return reverse('obj_update', kwargs={'slug': self.slug})
 
     def get_delete_url(self):
         return reverse('obj_delete', kwargs={'slug': self.slug})
