@@ -50,12 +50,12 @@ class ObjectUpdateMixin:
 
 class ObjectDeleteMixin:
     model = None
-    template = None
+    template = 'blog/obj_delete.html'
     redirect_url = None
 
     def get(self, request, slug):
         obj = self.model.objects.get(slug__exact=slug)
-        return render(request, self.template, {self.model.__name__.lower(): obj})
+        return render(request, self.template, {'obj': obj, 'name': self.model.__name__.lower()})
 
     def post(self, request, slug):
         obj = self.model.objects.get(slug__exact=slug)
