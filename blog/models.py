@@ -28,10 +28,10 @@ class Post(models.Model):
         return reverse('post_detail', kwargs={'slug': self.slug})
 
     def get_update_url(self):
-        return reverse('obj_update', kwargs={'slug': self.slug})
+        return reverse('post_update', kwargs={'slug': self.slug})
 
     def get_delete_url(self):
-        return reverse('obj_delete', kwargs={'slug': self.slug})
+        return reverse('post_delete', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -50,10 +50,10 @@ class Tag(models.Model):
         return reverse('tag_detail', kwargs={'slug': self.slug})
 
     def get_update_url(self):
-        return reverse('obj_update', kwargs={'slug': self.slug})
+        return reverse('tag_update', kwargs={'slug': self.slug})
 
     def get_delete_url(self):
-        return reverse('obj_delete', kwargs={'slug': self.slug})
+        return reverse('tag_delete', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title

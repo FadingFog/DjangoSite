@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block title %}
-    Create Post - {{ block.super }}
+    Create {{ name|title }} - {{ block.super }}
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
             </div>
         {% endfor %}
 
-        <button type="submit" class="btn btn-primary mt-2">Create Post</button>
+        <button type="submit" class="btn btn-primary mt-2">Create {{ name|title }}</button>
     </form>
 
 {% endblock %}

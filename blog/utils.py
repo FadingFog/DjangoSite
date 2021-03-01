@@ -12,12 +12,13 @@ class ObjectDetailMixin:
 
 
 class ObjectCreateMixin:
+    model = None
     model_form = None
     template = None
 
     def get(self, request):
         form = self.model_form()
-        return render(request, self.template, {'form': form})
+        return render(request, self.template, {'form': form, 'name': self.model.__name__.lower()})
 
     def post(self, request):
         bound_form = self.model_form(request.POST)

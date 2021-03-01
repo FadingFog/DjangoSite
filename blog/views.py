@@ -18,6 +18,7 @@ class PostDetail(ObjectDetailMixin, View):
 
 
 class PostCreate(ObjectCreateMixin, View):
+    model = Post
     model_form = PostForm
     template = 'blog/post_create.html'
 
@@ -38,6 +39,7 @@ class TagDetail(ObjectDetailMixin, View):
 
 
 class TagCreate(ObjectCreateMixin, View):
+    model = Tag
     model_form = TagForm
     template = 'blog/tag_create.html'
 
