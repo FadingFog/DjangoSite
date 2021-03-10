@@ -1,0 +1,21 @@
+{% extends 'blog/hotels.html' %}
+
+
+{% block title %}
+    Hotel List
+{% endblock %}
+
+{% block content %}
+    <div id="content">
+        <h2>Hotels</h2>
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Rooms</th>
+            </tr>
+                {% for name, rooms in hotels.items %}
+                    <tr><td>{{ name }}</td><td>{{ rooms }}</td></tr>
+                {% endfor %}
+        </table>
+    </div>
+{% endblock %}

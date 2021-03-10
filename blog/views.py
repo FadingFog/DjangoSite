@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.views.generic import View, ListView
-from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Post, Tag, Hotel
 from .utils import *
 from .forms import TagForm, PostForm
@@ -17,20 +17,23 @@ class PostDetail(ObjectDetailMixin, View):
     template = 'blog/post_detail.html'
 
 
-class PostCreate(ObjectCreateMixin, View):
+class PostCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     model = Post
     model_form = PostForm
     template = 'blog/post_create.html'
+    raise_exception = True
 
 
-class PostUpdate(ObjectUpdateMixin, View):
+class PostUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     model = Post
     model_form = PostForm
+    raise_exception = True
 
 
-class PostDelete(ObjectDeleteMixin, View):
+class PostDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
     model = Post
     redirect_url = 'index'
+    raise_exception = True
 
 
 class TagDetail(ObjectDetailMixin, View):
@@ -38,20 +41,23 @@ class TagDetail(ObjectDetailMixin, View):
     template = 'blog/tag_detail.html'
 
 
-class TagCreate(ObjectCreateMixin, View):
+class TagCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     model = Tag
     model_form = TagForm
     template = 'blog/tag_create.html'
+    raise_exception = True
 
 
-class TagUpdate(ObjectUpdateMixin, View):
+class TagUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
     model = Tag
     model_form = TagForm
+    raise_exception = True
 
 
-class TagDelete(ObjectDeleteMixin, View):
+class TagDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
     model = Tag
     redirect_url = 'tag_list'
+    raise_exception = True
 
 
 def tags_list(request):
@@ -59,6 +65,11 @@ def tags_list(request):
     return render(request, 'blog/tag_list.html', {'tags': tags})
 
 
-class HotelListView(ListView):
-    model = Hotel
-    template_name = 'blog/hotel_list.html'
+# class HotelListView(ListView):
+#     model = Hotel
+#     template_name = 'blog/hotel_list.html'
+
+
+def hotel_list(request):
+    hotels = {'shit': 2, 'luxery': 50, 'kolyapidor': 1, 'meme': 100}
+    return render(request, 'blog/hotel_list.html', {'hotels': hotels})
